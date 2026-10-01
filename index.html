@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline of Internet Memes - MemePedia</title>
+    <style>
+        /* Wikipedia Vector Theme Styling */
+        :root {
+            --wiki-border: #a2a9b1;
+            --wiki-bg: #f8f9fa;
+            --wiki-link: #36c;
+            --wiki-text: #202122;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Lato, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--wiki-text);
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top Header */
+        header {
+            border-bottom: 1px solid var(--wiki-border);
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+        }
+
+        .logo {
+            font-family: 'Linux Libertine', 'Georgia', serif;
+            font-size: 1.5rem;
+            font-weight: normal;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .logo span {
+            font-size: 0.8rem;
+            display: block;
+            color: #54595d;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 5px;
+        }
+
+        .search-box input {
+            padding: 5px;
+            border: 1px solid var(--wiki-border);
+            border-radius: 2px;
+        }
+
+        .search-box button {
+            background: var(--wiki-bg);
+            border: 1px solid var(--wiki-border);
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* Layout Container */
+        .container {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Sidebar Navigation */
+        aside {
+            width: 180px;
+            padding: 15px;
+            border-right: 1px solid var(--wiki-border);
+            background-color: var(--wiki-bg);
+            font-size: 0.85rem;
+        }
+
+        aside h3 {
+            font-size: 0.75rem;
+            color: #54595d;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--wiki-border);
+            padding-bottom: 3px;
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside li {
+            margin-bottom: 8px;
+        }
+
+        aside a {
+            color: var(--wiki-link);
+            text-decoration: none;
+        }
+
+        aside a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Article Area */
+        main {
+            flex: 1;
+            padding: 20px 40px;
+            max-width: 900px;
+        }
+
+        h1.article-title {
+            font-family: 'Linux Libertine', 'Georgia', serif;
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--wiki-border);
+            padding-bottom: 5px;
+            margin-top: 0;
+            font-weight: normal;
+        }
+
+        /* Timeline Styling */
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--wiki-border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            background: #fff;
+            border: 1px solid var(--wiki-border);
+            border-radius: 4px;
+            padding: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -39px;
+            top: 15px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--wiki-link);
+            border: 2px solid #fff;
+        }
+
+        .year-badge {
+            display: inline-block;
+            background: var(--wiki-bg);
+            border: 1px solid var(--wiki-border);
+            padding: 2px 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            border-radius: 3px;
+        }
+
+        .meme-title {
+            font-family: 'Linux Libertine', 'Georgia', serif;
+            font-size: 1.3rem;
+            margin: 5px 0;
+        }
+
+        .meme-description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        /* Video Container / Media Frame */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border: 1px solid var(--wiki-border);
+            background-color: #000;
+            margin-top: 10px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--wiki-border);
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            background-color: var(--wiki-bg);
+            color: #54595d;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            MemePedia
+            <span>The Free Meme Encyclopedia</span>
+        </a>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search timeline...">
+            <button onclick="searchTimeline()">Search</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside>
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="#1996">1996 - Dancing Baby</a></li>
+                <li><a href="#2001">2001 - All Your Base</a></li>
+                <li><a href="#2003">2003 - Numa Numa</a></li>
+                <li><a href="#2007">2007 - Rickroll</a></li>
+                <li><a href="#2011">2011 - Nyan Cat</a></li>
+                <li><a href="#2012">2012 - Gangnam Style</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <h1 class="article-title">Timeline of Internet Memes</h1>
+            <p>This article details the historical timeline of notable internet memes, viral videos, and internet phenomena with video documentation.</p>
+
+            <div class="timeline">
+
+                <!-- 1996 -->
+                <div class="timeline-item" id="1996">
+                    <span class="year-badge">1996</span>
+                    <h2 class="meme-title">The Dancing Baby (Baby Cha-Cha)</h2>
+                    <p class="meme-description">One of the oldest viral internet phenomena. A 3D-rendered animation of a baby dancing to Hooked on a Feeling, rendered as a source file demonstration for 3D animation software.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/-5x5OXfe9KY" title="Dancing Baby Meme" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <!-- 2001 -->
+                <div class="timeline-item" id="2001">
+                    <span class="year-badge">2001</span>
+                    <h2 class="meme-title">All Your Base Are Belong To Us</h2>
+                    <p class="meme-description">A viral meme derived from the poorly translated opening cutscene of the 1989 Sega Mega Drive version of the video game <i>Zero Wing</i>.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/8fvTxv46ano" title="All Your Base Are Belong To Us" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <!-- 2003 -->
+                <div class="timeline-item" id="2003">
+                    <span class="year-badge">2003</span>
+                    <h2 class="meme-title">Numa Numa</h2>
+                    <p class="meme-description">Gary Brolsma posted a video of himself lip-syncing to the song "Dragostea Din Tei" by O-Zone. It became one of the first major web video viral phenomena.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/KmtzQCHW6X0" title="Numa Numa Meme" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <!-- 2007 -->
+                <div class="timeline-item" id="2007">
+                    <span class="year-badge">2007</span>
+                    <h2 class="meme-title">Rickrolling (Rick Astley - Never Gonna Give You Up)</h2>
+                    <p class="meme-description">An internet bait-and-switch meme where a user provides a hyperlink disguised as relevant content, which instead redirects to the 1987 music video by Rick Astley.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Rick Astley - Never Gonna Give You Up" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <!-- 2011 -->
+                <div class="timeline-item" id="2011">
+                    <span class="year-badge">2011</span>
+                    <h2 class="meme-title">Nyan Cat</h2>
+                    <p class="meme-description">A 8-bit animation of a cat with a Pop-Tart body flying through space while leaving a rainbow trail behind it, set to a Japanese pop song.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/QH2-TGUlwu4" title="Nyan Cat" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <!-- 2012 -->
+                <div class="timeline-item" id="2012">
+                    <span class="year-badge">2012</span>
+                    <h2 class="meme-title">Gangnam Style</h2>
+                    <p class="meme-description">South Korean musician Psy released "Gangnam Style", becoming the first YouTube video to reach 1 billion views and generating globally recognizable video dances.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/9bZkp7q19f0" title="PSY - GANGNAM STYLE" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        Text is available under Creative Commons Attribution-ShareAlike License. Static meme catalog hosted on GitHub/Vercel.
+    </footer>
+
+    <script>
+        function searchTimeline() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let items = document.querySelectorAll('.timeline-item');
+
+            items.forEach(item => {
+                let text = item.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
